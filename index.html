@@ -8,7 +8,7 @@
 <style>
 :root {
   --fx-purple: #4d148c; --fx-orange: #ff6200; --fx-teal: #007ab7;
-  --fx-bg: #f2f2f2; --fx-card: #fff; --fx-text: #333; --fx-muted: #666; --fx-border: #e8e8e8;
+  --fx-bg: #f2f2f2; --fx-text: #333; --fx-muted: #666; --fx-border: #e8e8e8;
   --fx-safe-top: env(safe-area-inset-top, 0px); --fx-safe-bottom: env(safe-area-inset-bottom, 0px);
 }
 * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -92,7 +92,7 @@ body {
 .drawer-user { display: flex; justify-content: space-between; align-items: center; padding: 14px 16px; border-bottom: 1px solid #eee; }
 .drawer-user .nm { font-size: 16px; color: var(--fx-purple); font-weight: 500; }
 .drawer-user .out { color: var(--fx-teal); font-size: 12px; font-weight: 700; text-decoration: none; }
-.drawer nav a { display: flex; gap: 16px; padding: 13px 18px; color: var(--fx-text); text-decoration: none; font-size: 15px; }
+.drawer nav a { display: block; padding: 13px 18px; color: var(--fx-text); text-decoration: none; font-size: 15px; }
 .toast { display: none; margin: 10px 14px 0; padding: 12px 14px; background: #fff; border-left: 4px solid #c62828; border-radius: 4px; font-size: 13px; }
 </style>
 </head>
@@ -145,7 +145,7 @@ body {
         </div>
         <div class="ship-body">
           <div class="ship-status">In transit</div>
-          <div class="ship-detail">Arrived at FedEx location · DALLAS, TX<br>50% of route complete</div>
+          <div class="ship-detail">Arrived at FedEx location · TALLAHASSEE, FL<br>50% of route complete</div>
           <div class="ship-tn">48291-55307-918274036</div>
         </div>
         <span class="ship-chevron">›</span>
@@ -210,7 +210,7 @@ body {
       status: 'In transit',
       statusDetail: 'Arrived at FedEx location',
       progress: 50,
-      currentLocation: 'DALLAS, TX US',
+      currentLocation: 'TALLAHASSEE, FL US',
       eta: new Date(now.getTime() + 36 * 3600000).toLocaleDateString('en-US', {
         weekday: 'long', month: 'long', day: 'numeric'
       }),
@@ -218,15 +218,18 @@ body {
       dimensions: '12 x 9 x 6 in.',
       reference: 'PO-80215',
       events: [
-        { title: 'Shipment information sent to FedEx', loc: 'HOUSTON, TX US', time: fmt(48), state: 'done' },
-        { title: 'Picked up', loc: 'HOUSTON, TX US', time: fmt(42), state: 'done' },
-        { title: 'Arrived at FedEx origin facility', loc: 'HOUSTON, TX US', time: fmt(40), state: 'done' },
-        { title: 'Left FedEx origin facility', loc: 'HOUSTON, TX US', time: fmt(36), state: 'done' },
-        { title: 'In transit', loc: 'WACO, TX US', time: fmt(28), state: 'done' },
-        { title: 'Arrived at FedEx location', loc: 'DALLAS, TX US', time: fmt(12), state: 'done' },
-        { title: 'At local FedEx facility', loc: 'DALLAS, TX US', time: fmt(6), state: 'current' },
-        { title: 'On FedEx vehicle for delivery', loc: '4817 Friendly St', time: '', state: 'pending' },
-        { title: 'Delivered', loc: '4817 Friendly St', time: '', state: 'pending' }
+        { title: 'Shipment information sent to FedEx', loc: 'HOUSTON, TX US', time: fmt(54), state: 'done' },
+        { title: 'Picked up', loc: 'HOUSTON, TX US', time: fmt(48), state: 'done' },
+        { title: 'Arrived at FedEx origin facility', loc: 'HOUSTON, TX US', time: fmt(46), state: 'done' },
+        { title: 'Left FedEx origin facility', loc: 'HOUSTON, TX US', time: fmt(42), state: 'done' },
+        { title: 'In transit', loc: 'LAKE CHARLES, LA US', time: fmt(36), state: 'done' },
+        { title: 'Arrived at FedEx location', loc: 'NEW ORLEANS, LA US', time: fmt(28), state: 'done' },
+        { title: 'Departed FedEx location', loc: 'NEW ORLEANS, LA US', time: fmt(22), state: 'done' },
+        { title: 'In transit', loc: 'MOBILE, AL US', time: fmt(16), state: 'done' },
+        { title: 'Arrived at FedEx location', loc: 'TALLAHASSEE, FL US', time: fmt(8), state: 'done' },
+        { title: 'At local FedEx facility', loc: 'TALLAHASSEE, FL US', time: fmt(4), state: 'current' },
+        { title: 'On FedEx vehicle for delivery', loc: '4817 Friendly St, FL US', time: '', state: 'pending' },
+        { title: 'Delivered', loc: '4817 Friendly St, FL US', time: '', state: 'pending' }
       ]
     };
   }
@@ -253,13 +256,13 @@ body {
       '</div>' +
       '<div class="d-card">' +
         '<h2>Shipment progress</h2>' +
-        '<div class="ps-labels"><span>Houston, TX</span><span>4817 Friendly St</span></div>' +
+        '<div class="ps-labels"><span>Houston, TX</span><span>Florida · 4817 Friendly St</span></div>' +
         '<div class="ps-bar"><div class="ps-fill" style="width:' + prog + '%"></div></div>' +
         '<div class="ps-meta"><strong>' + prog + '%</strong> complete · ' + (100 - prog) + '% remaining</div>' +
       '</div>' +
       '<div class="d-card">' +
         '<div class="meta-row"><span class="k">From</span><span class="v">Houston, TX</span></div>' +
-        '<div class="meta-row"><span class="k">To</span><span class="v">Anita Vincent<br>4817 Friendly St</span></div>' +
+        '<div class="meta-row"><span class="k">To</span><span class="v">Anita Vincent<br>4817 Friendly St<br>Florida</span></div>' +
         '<div class="meta-row"><span class="k">Service</span><span class="v">FedEx Ground</span></div>' +
         '<div class="meta-row"><span class="k">Scheduled delivery</span><span class="v">' + d.eta + '</span></div>' +
         '<div class="meta-row"><span class="k">Weight</span><span class="v">' + d.weight + '</span></div>' +
