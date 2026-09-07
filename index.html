@@ -68,11 +68,6 @@ body {
 .d-loc .lv { font-size: 16px; font-weight: 600; }
 .d-card { background: #fff; border-radius: 12px; padding: 16px; margin-bottom: 12px; box-shadow: 0 1px 3px rgba(0,0,0,0.07); }
 .d-card h2 { font-size: 15px; font-weight: 700; margin-bottom: 12px; }
-.ps-labels { display: flex; justify-content: space-between; font-size: 11px; color: var(--fx-muted); margin-bottom: 6px; }
-.ps-bar { height: 6px; background: #e6e6e6; border-radius: 3px; overflow: hidden; }
-.ps-fill { height: 100%; background: var(--fx-purple); border-radius: 3px; width: 50%; }
-.ps-meta { margin-top: 8px; font-size: 13px; color: var(--fx-muted); }
-.ps-meta strong { color: var(--fx-purple); }
 .meta-row { display: flex; justify-content: space-between; gap: 16px; padding: 11px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; }
 .meta-row:last-child { border-bottom: 0; padding-bottom: 0; }
 .meta-row:first-child { padding-top: 0; }
@@ -145,7 +140,7 @@ body {
         </div>
         <div class="ship-body">
           <div class="ship-status">In transit</div>
-          <div class="ship-detail">Arrived at FedEx location · TALLAHASSEE, FL<br>50% of route complete</div>
+          <div class="ship-detail">Arrived at FedEx location · TALLAHASSEE, FL</div>
           <div class="ship-tn">48291-55307-918274036</div>
         </div>
         <span class="ship-chevron">›</span>
@@ -209,7 +204,6 @@ body {
       trackingNumber: TN,
       status: 'In transit',
       statusDetail: 'Arrived at FedEx location',
-      progress: 50,
       currentLocation: 'TALLAHASSEE, FL US',
       eta: new Date(now.getTime() + 36 * 3600000).toLocaleDateString('en-US', {
         weekday: 'long', month: 'long', day: 'numeric'
@@ -235,7 +229,6 @@ body {
   }
 
   function renderDetail(d) {
-    var prog = d.progress != null ? d.progress : 50;
     var hist = (d.events || []).map(function (e) {
       return '<div class="th-item ' + (e.state || '') + '">' +
         '<div class="th-title">' + e.title + '</div>' +
@@ -253,12 +246,6 @@ body {
       '<div class="d-loc">' +
         '<div class="lk">Current location</div>' +
         '<div class="lv">' + d.currentLocation + '</div>' +
-      '</div>' +
-      '<div class="d-card">' +
-        '<h2>Shipment progress</h2>' +
-        '<div class="ps-labels"><span>Houston, TX</span><span>Florida · 4817 Friendly St</span></div>' +
-        '<div class="ps-bar"><div class="ps-fill" style="width:' + prog + '%"></div></div>' +
-        '<div class="ps-meta"><strong>' + prog + '%</strong> complete · ' + (100 - prog) + '% remaining</div>' +
       '</div>' +
       '<div class="d-card">' +
         '<div class="meta-row"><span class="k">From</span><span class="v">Houston, TX</span></div>' +
